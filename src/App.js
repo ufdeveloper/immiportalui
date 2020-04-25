@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import EmploymentHistory from '../src/components/EmploymentHistory/EmploymentHistory';
+import Homepage from "./containers/Homepage/Homepage";
 
 class App extends Component {
   render() {
     return (
       <div>
-          <EmploymentHistory />
+          <Homepage />
       </div>
     );
   }
