@@ -8,7 +8,7 @@ import Aux from "../../hoc/Aux/Aux";
 class Homepage extends Component {
 
     state = {
-        employers: [],
+        employers: null,
         error: false
     }
 

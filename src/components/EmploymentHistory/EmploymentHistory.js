@@ -8,6 +8,7 @@ const employmentHistory = (props) => {
         props.employers
             .map(employer => {
                 return <Employment
+                    key={employer.name}
                     name={employer.name}
                     title={employer.title}
                     // address={employer.address}
