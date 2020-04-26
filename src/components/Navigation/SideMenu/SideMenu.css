@@ -1,4 +1,4 @@
-.SideDrawer {
+.SideMenu {
     position: fixed;
     width: 280px;
     max-width: 70%;
@@ -12,21 +12,15 @@
     transition: transform 0.3s ease-out;
 }
 
-@media (min-width: 500px) {
-    .SideDrawer {
+@media (max-width: 500px) {
+    .SideMenu {
         display: none;
     }
 }
 
-.Open {
-    transform: translateX(0);
-}
-
-.Close {
-    transform: translateX(-100%);
-}
-
 .Logo {
+    text-align: center;
     height: 11%;
     margin-bottom: 32px;
 }
+

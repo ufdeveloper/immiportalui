@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Aux/Aux';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import SideMenu from "../Navigation/SideMenu/SideMenu";
 
 import classes from './Layout.css';
 
@@ -32,6 +33,7 @@ class Layout extends Component {
                 <SideDrawer
                     showSideDrawer={this.state.showSideDrawer}
                     sideDrawerClosedHandler={this.sideDrawerClosedHandler} />
+                <SideMenu />
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

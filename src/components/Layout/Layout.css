@@ -1,3 +1,10 @@
 .Content {
-    margin-top: 72px;
+    margin-left: 280px;
+}
+
+@media (max-width: 499px) {
+    .Content {
+        margin-top: 72px;
+        margin-left: 0px;
+    }
 }
