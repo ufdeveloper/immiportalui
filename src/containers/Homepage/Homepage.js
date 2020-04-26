@@ -25,7 +25,8 @@ class Homepage extends Component {
 
     render() {
 
-        let employmentHistory = this.state.error ? <p>Employment history cannot be loaded</p> : <Spinner />;
+        let employmentHistory = this.state.error ?
+            <p style={{textAlign: 'center', fontSize: '1.3em'}}>Employment history cannot be loaded</p> : <Spinner />;
         if(this.state.employers) {
             employmentHistory = <EmploymentHistory employers={this.state.employers} />
         }
