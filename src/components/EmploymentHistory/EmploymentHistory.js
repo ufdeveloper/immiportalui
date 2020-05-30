@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import { uuid } from 'uuidv4';
 import Employment from "./Employment/Employment";
 import Button from '../UI/Button/Button';
 
 import classes from './EmploymentHistory.css';
 import Modal from "../UI/Modal/Modal";
 import AddEmployment from "./AddEmployment/AddEmployment";
+import axios from '../../axios-employmentHistory';
 
 class EmploymentHistory extends Component {
 
@@ -20,8 +22,24 @@ class EmploymentHistory extends Component {
         this.setState({addingEmployment: false});
     }
 
-    addEmploymentSubmittedHandler = () => {
+    addEmploymentSubmittedHandler = (event) => {
+        event.preventDefault();
+        const employer = {
+            id: uuid(),
+            name: 'SpaceX',
+            title: 'CEO',
+            fromDate: '11/11/2013',
+            toDate: '11/11/2013',
+            currentEmployer: false
+        };
 
+        axios.post('/portal/123/employment', employer)
+            .then(res => {
+                this.setState({addingEmployment: false});
+            })
+            .catch(err => {
+                console.log("error saving employer, err=", err);
+            })
     }
 
     render() {
