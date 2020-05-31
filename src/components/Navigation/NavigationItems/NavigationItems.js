@@ -5,10 +5,10 @@ import classes from './NavigationItems.css';
 
 const navigationItems = (props) => (
     <ul className={classes.NavigationItems}>
-        <NavigationItem link="/" active>Employment History</NavigationItem>
-        <NavigationItem link="/">Travel History</NavigationItem>
-        <NavigationItem link="/">Education History</NavigationItem>
-        <NavigationItem link="/">Employment Documents</NavigationItem>
+        <NavigationItem link="/employment" active>Employment History</NavigationItem>
+        <NavigationItem link="/travel">Travel History</NavigationItem>
+        <NavigationItem link="/education">Education History</NavigationItem>
+        <NavigationItem link="/docs">Employment Documents</NavigationItem>
     </ul>
 );
 
