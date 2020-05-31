@@ -17,7 +17,7 @@ class TravelHistory extends Component {
         error: false,
         fetched: false,
         addingTravel: false,
-        addedTravel: false
+        updatedTravel: false
     }
 
     addTravelHandler = () => {
@@ -38,12 +38,25 @@ class TravelHistory extends Component {
                 console.log("successfully added travel");
                 this.setState({
                     addingTravel: false,
-                    addedTravel: true
+                    updatedTravel: true
                 });
             })
             .catch(err => {
                 console.log("error saving travel, err=", err);
             })
+    }
+
+    removeTravel = (id) => {
+        axios.delete('/portal/123/travel/' + id)
+            .then(res => {
+                console.log("successfully deleted travel=", id);
+                this.setState({
+                    updatedTravel: true
+                });
+            })
+            .catch(err => {
+                console.log("error deleting travel=", id);
+            });
     }
 
     componentDidMount() {
@@ -64,10 +77,10 @@ class TravelHistory extends Component {
     componentDidUpdate(prevProps, prevState) {
 
         console.log("TravelHistory:componentDidUpdate");
-        console.log("this.state.addedTravel=", this.state.addedTravel);
-        console.log("prevState.addedTravel=", prevState.addedTravel);
+        console.log("this.state.updatedTravel=", this.state.updatedTravel);
+        console.log("prevState.updatedTravel=", prevState.updatedTravel);
 
-        if(this.state.addedTravel != prevState.addedTravel) {
+        if(this.state.updatedTravel != prevState.updatedTravel) {
             axios.get('/portal/123/travel')
                 .then(res => {
                     console.log("fetched travels=", res.data.travelHistory);
@@ -76,7 +89,7 @@ class TravelHistory extends Component {
                 .catch(error => {
                     this.setState({error: true, fetched: true});
                 });
-            this.setState({addedTravel: false});
+            this.setState({updatedTravel: false});
         }
     }
 
@@ -99,9 +112,11 @@ class TravelHistory extends Component {
                             .map(travel => {
                                 return <Travel
                                     key={travel.id}
+                                    id={travel.id}
                                     exitDate={travel.exitDate}
                                     enterDate={travel.enterDate}
-                                    portOfEntry={travel.portOfEntry} />;
+                                    portOfEntry={travel.portOfEntry}
+                                    removeTravel={this.removeTravel} />;
                             });
         }
 

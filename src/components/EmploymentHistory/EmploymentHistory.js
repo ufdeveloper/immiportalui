@@ -17,7 +17,7 @@ class EmploymentHistory extends Component {
         error: false,
         fetched: false,
         addingEmployment: false,
-        addedEmployment: false
+        updatedEmployment: false
     }
 
     addEmploymentHandler = () => {
@@ -46,12 +46,25 @@ class EmploymentHistory extends Component {
                 console.log("successfully added employer");
                 this.setState({
                     addingEmployment: false,
-                    addedEmployment: true
+                    updatedEmployment: true
                 });
             })
             .catch(err => {
                 console.log("error saving employer, err=", err);
             })
+    }
+
+    removeEmployer = (id) => {
+        axios.delete('/portal/123/employment/' + id)
+            .then(res => {
+                console.log("successfully deleted employer=", id);
+                this.setState({
+                    updatedEmployment: true
+                });
+            })
+            .catch(err => {
+                console.log("error deleting employer=", id);
+            });
     }
 
     componentDidMount() {
@@ -71,10 +84,10 @@ class EmploymentHistory extends Component {
     componentDidUpdate(prevProps, prevState) {
 
         console.log("EmploymentHistory:componentDidUpdate");
-        console.log("this.state.addedEmployment=", this.state.addedEmployment);
-        console.log("prevState.addedEmployment=", prevState.addedEmployment);
+        console.log("this.state.updatedEmployment=", this.state.updatedEmployment);
+        console.log("prevState.updatedEmployment=", prevState.updatedEmployment);
 
-        if(this.state.addedEmployment != prevState.addedEmployment) {
+        if(this.state.updatedEmployment != prevState.updatedEmployment) {
             axios.get('/portal/123/employment')
                 .then(res => {
                     console.log("fetched employers=", res.data.employers);
@@ -83,7 +96,7 @@ class EmploymentHistory extends Component {
                 .catch(error => {
                     this.setState({error: true, fetched: true});
                 });
-            this.setState({addedEmployment: false});
+            this.setState({updatedEmployment: false});
         }
     }
 
@@ -106,11 +119,12 @@ class EmploymentHistory extends Component {
                             .map(employer => {
                                 return <Employment
                                     key={employer.id}
+                                    id={employer.id}
                                     name={employer.name}
                                     title={employer.title}
-                                    // address={employer.address}
                                     fromDate={employer.fromDate}
-                                    toDate={employer.toDate}/>;
+                                    toDate={employer.toDate}
+                                    removeEmployer={this.removeEmployer} />;
                             });
         }
 
