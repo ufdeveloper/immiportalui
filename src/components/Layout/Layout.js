@@ -27,6 +27,9 @@ class Layout extends Component {
     };
 
     render() {
+
+        console.log("Layout:render");
+
         return (
             <Aux>
                 <Toolbar toggleClickHandler={this.sideDrawerDisplayHandler}/>

@@ -67,6 +67,10 @@ class EmploymentHistory extends Component {
             });
     }
 
+    editEmployer = (id) => {
+
+    }
+
     componentDidMount() {
 
         console.log("EmploymentHistory:componentDidMount");
@@ -124,6 +128,7 @@ class EmploymentHistory extends Component {
                                     title={employer.title}
                                     fromDate={employer.fromDate}
                                     toDate={employer.toDate}
+                                    editEmployer={this.editEmployer}
                                     removeEmployer={this.removeEmployer} />;
                             });
         }
