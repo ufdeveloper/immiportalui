@@ -7,6 +7,7 @@ import EmploymentHistory from "./components/EmploymentHistory/EmploymentHistory"
 import TravelHistory from "./components/TravelHistory/TravelHistory";
 import Homepage from "./containers/Homepage/Homepage";
 import Profile from "./components/Profile/Profile";
+import Logout from "./components/Logout/Logout";
 
 const config = {
     clientId: '0oajate0bv79bWV7P4x6',
@@ -29,6 +30,7 @@ class App extends Component {
                     <SecureRoute path="/docs" component={EmploymentHistory} />
                     <Route path="/implicit/callback" component={LoginCallback} />
                     <SecureRoute path="/profile" component={Profile} />
+                    <SecureRoute path="/logout" component={Logout} />
                     <Route path="/" exact component={Homepage} />
                 </Security>
             </Switch>
