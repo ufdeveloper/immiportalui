@@ -93,6 +93,8 @@ const Homepage = () => {
                             After you authenticate, you will be returned to this application with an ID token and access token.  These tokens will be stored in local storage and can be retrieved at a later time.
                         </p>
                         <Button id="login-button" primary onClick={login}>Login</Button>
+                        <a href="https://dev-565937.okta.com/oauth2/v1/authorize?idp=0oajc3cxuyawcWgNZ4x6&client_id=0oajate0bv79bWV7P4x6&response_type=token&response_mode=fragment&scope=openid email profile&redirect_uri=http://localhost:3000/implicit/callback&state=state&nonce=nonce"
+                           id="login-fb" primary>Login With Facebook</a>
                     </div>
                 )}
 
