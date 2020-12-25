@@ -35,8 +35,8 @@ class Layout extends Component {
                 <Toolbar toggleClickHandler={this.sideDrawerDisplayHandler}/>
                 <SideDrawer
                     showSideDrawer={this.state.showSideDrawer}
-                    sideDrawerClosedHandler={this.sideDrawerClosedHandler} />
-                <SideMenu />
+                    sideDrawerClosedHandler={this.sideDrawerClosedHandler}/>
+                <SideMenu/>
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

@@ -55,27 +55,28 @@ class addEmployment extends Component {
                            id="employerName"
                            placeholder="Employer Name"
                            value={this.state.employer['name'] || ''}
-                           onChange={this.onNameChanged} />
+                           onChange={this.onNameChanged}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="jobTitle">Job Title</label>
                     <input type="text" className="form-control" id="jobTitle" placeholder="Job Title"
                            value={this.state.employer['title'] || ''}
-                           onChange={this.onTitleChanged} />
+                           onChange={this.onTitleChanged}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="startDate">Start Date</label>
                     <input type="text" className="form-control" id="startDate" placeholder="Start Date"
                            value={this.state.employer['fromDate'] || ''}
-                           onChange={this.onStartDateChanged} />
+                           onChange={this.onStartDateChanged}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="endDate">End Date</label>
                     <input type="text" className="form-control" id="endDate" placeholder="End Date"
                            value={this.state.employer['toDate'] || ''}
-                           onChange={this.onEndDateChanged} />
+                           onChange={this.onEndDateChanged}/>
                 </div>
-                <Button clicked={(event) => this.props.addEmploymentSubmitted(event, this.state.employer)}>Submit</Button>
+                <Button
+                    clicked={(event) => this.props.addEmploymentSubmitted(event, this.state.employer)}>Submit</Button>
                 <Button clicked={this.props.dismissEmploymentModalClicked}>Cancel</Button>
             </form>
         );

@@ -9,20 +9,20 @@ import classes from './SideDrawer.css';
 const sideDrawer = (props) => {
 
     let attachedClasses = [classes.SideDrawer, classes.Close];
-    if(props.showSideDrawer) {
+    if (props.showSideDrawer) {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
 
     return (
         <Aux>
             <Backdrop show={props.showSideDrawer}
-                      dismissModalHandler={props.sideDrawerClosedHandler} />
+                      dismissModalHandler={props.sideDrawerClosedHandler}/>
             <div className={attachedClasses.join(' ')}>
                 <div className={classes.Logo}>
-                    <Logo />
+                    <Logo/>
                 </div>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems/>
                 </nav>
             </div>
         </Aux>

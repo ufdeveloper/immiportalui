@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withOktaAuth } from '@okta/okta-react';
+import React, {Component} from 'react';
+import {withOktaAuth} from '@okta/okta-react';
 
 const issuer = 'https://dev-565937.okta.com/oauth2/default';
 const redirectUri = `${window.location.origin}`;
