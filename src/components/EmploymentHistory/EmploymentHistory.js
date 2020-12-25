@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { uuid } from 'uuidv4';
+import {uuid} from 'uuidv4';
 import Employment from "./Employment/Employment";
 import Button from '../UI/Button/Button';
 
@@ -75,7 +75,20 @@ class EmploymentHistory extends Component {
 
         console.log("EmploymentHistory:componentDidMount");
 
-        axios.get('/portal/123/employment')
+        const tokenStorage = localStorage.getItem("okta-token-storage");
+        console.log("tokenStorage=", tokenStorage);
+        const tokenStorageJson = JSON.parse(tokenStorage);
+        const accessToken = tokenStorageJson['accessToken'];
+        console.log("accessToken=", accessToken);
+        const accessTokenValue = accessToken["value"];
+        console.log("accessTokenValue=", accessTokenValue);
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + accessTokenValue
+            }
+        }
+        console.log("config=", config);
+        axios.get('/portal/123/employment', config)
             .then(res => {
                 console.log("fetched employers=", res.data.employers);
                 this.setState({employers: res.data.employers, fetched: true});
@@ -91,8 +104,15 @@ class EmploymentHistory extends Component {
         console.log("this.state.updatedEmployment=", this.state.updatedEmployment);
         console.log("prevState.updatedEmployment=", prevState.updatedEmployment);
 
-        if(this.state.updatedEmployment != prevState.updatedEmployment) {
-            axios.get('/portal/123/employment')
+        if (this.state.updatedEmployment != prevState.updatedEmployment) {
+            const tokenStorage = localStorage.getItem("okta-token-storage");
+            console.log("okta-token-storage=", tokenStorage);
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + tokenStorage['accessToken'],
+                }
+            }
+            axios.get('/portal/123/employment', config)
                 .then(res => {
                     console.log("fetched employers=", res.data.employers);
                     this.setState({employers: res.data.employers, fetched: true});
@@ -109,38 +129,38 @@ class EmploymentHistory extends Component {
         console.log("EmploymentHistory:render");
 
         let employmentHistory = this.state.error ?
-            <p style={{textAlign: 'center', fontSize: '1.3em'}}>Employment history cannot be loaded</p> : <Spinner />;
-        if(this.state.fetched && !this.state.error) {
+            <p style={{textAlign: 'center', fontSize: '1.3em'}}>Employment history cannot be loaded</p> : <Spinner/>;
+        if (this.state.fetched && !this.state.error) {
             employmentHistory =
                 <div>
                     <p style={{textAlign: 'center', fontSize: '1.3em'}}>Please Add Employment History</p>
                 </div>
         }
 
-        if(this.state.employers && this.state.employers.length > 0) {
+        if (this.state.employers && this.state.employers.length > 0) {
             employmentHistory =
-                        this.state.employers
-                            .map(employer => {
-                                return <Employment
-                                    key={employer.id}
-                                    id={employer.id}
-                                    name={employer.name}
-                                    title={employer.title}
-                                    fromDate={employer.fromDate}
-                                    toDate={employer.toDate}
-                                    editEmployer={this.editEmployer}
-                                    removeEmployer={this.removeEmployer} />;
-                            });
+                this.state.employers
+                    .map(employer => {
+                        return <Employment
+                            key={employer.id}
+                            id={employer.id}
+                            name={employer.name}
+                            title={employer.title}
+                            fromDate={employer.fromDate}
+                            toDate={employer.toDate}
+                            editEmployer={this.editEmployer}
+                            removeEmployer={this.removeEmployer}/>;
+                    });
         }
 
         return (
             <div className={classes.EmploymentHistory}>
                 <Modal
                     show={this.state.addingEmployment}
-                    dismissModalHandler={this.dismissEmploymentModalHandler} >
+                    dismissModalHandler={this.dismissEmploymentModalHandler}>
                     <AddEmployment
                         addEmploymentSubmitted={this.addEmploymentSubmittedHandler}
-                        dismissEmploymentModalClicked={this.dismissEmploymentModalHandler} />
+                        dismissEmploymentModalClicked={this.dismissEmploymentModalHandler}/>
                 </Modal>
                 {employmentHistory}
                 <Button clicked={this.addEmploymentHandler}>Add Employment</Button>

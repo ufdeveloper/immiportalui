@@ -8,14 +8,14 @@ const sideMenu = (props) => {
     return (
         <div className={classes.SideMenu}>
             <div className={classes.Logo}>
-                <Logo />
+                <Logo/>
             </div>
-            <p style={{ fontSize: '1.3em', color: 'white', textAlign: 'center'}}>
+            <p style={{fontSize: '1.3em', color: 'white', textAlign: 'center'}}>
                 Immigration Portal
             </p>
 
             <nav>
-                <NavigationItems />
+                <NavigationItems/>
             </nav>
         </div>
     );

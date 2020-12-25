@@ -46,19 +46,19 @@ class addTravel extends Component {
                            id="exitDate"
                            placeholder="Exit Date"
                            value={this.state.travel['exitDate'] || ''}
-                           onChange={this.onExitDateChanged} />
+                           onChange={this.onExitDateChanged}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="enterDate">Enter Date</label>
                     <input type="text" className="form-control" id="enterDate" placeholder="Enter Date"
                            value={this.state.travel['enterDate'] || ''}
-                           onChange={this.onEnterDateChanged} />
+                           onChange={this.onEnterDateChanged}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="portOfEntry">Port Of Entry</label>
                     <input type="text" className="form-control" id="portOfEntry" placeholder="Port Of Entry"
                            value={this.state.travel['portOfEntry'] || ''}
-                           onChange={this.onPortOfEntryChanged} />
+                           onChange={this.onPortOfEntryChanged}/>
                 </div>
                 <Button clicked={(event) => this.props.addTravelSubmitted(event, this.state.travel)}>Submit</Button>
                 <Button clicked={this.props.dismissTravelModalClicked}>Cancel</Button>

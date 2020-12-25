@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { uuid } from 'uuidv4';
+import {uuid} from 'uuidv4';
 import Travel from "./Travel/Travel";
 import Button from '../UI/Button/Button';
 
@@ -80,7 +80,7 @@ class TravelHistory extends Component {
         console.log("this.state.updatedTravel=", this.state.updatedTravel);
         console.log("prevState.updatedTravel=", prevState.updatedTravel);
 
-        if(this.state.updatedTravel != prevState.updatedTravel) {
+        if (this.state.updatedTravel != prevState.updatedTravel) {
             axios.get('/portal/123/travel')
                 .then(res => {
                     console.log("fetched travels=", res.data.travelHistory);
@@ -98,36 +98,36 @@ class TravelHistory extends Component {
         console.log("TravelHistory:render");
 
         let travelHistory = this.state.error ?
-            <p style={{textAlign: 'center', fontSize: '1.3em'}}>Travel history cannot be loaded</p> : <Spinner />;
-        if(this.state.fetched && !this.state.error) {
+            <p style={{textAlign: 'center', fontSize: '1.3em'}}>Travel history cannot be loaded</p> : <Spinner/>;
+        if (this.state.fetched && !this.state.error) {
             travelHistory =
                 <div>
                     <p style={{textAlign: 'center', fontSize: '1.3em'}}>Please Add Travel History</p>
                 </div>
         }
 
-        if(this.state.travels && this.state.travels.length > 0) {
+        if (this.state.travels && this.state.travels.length > 0) {
             travelHistory =
-                        this.state.travels
-                            .map(travel => {
-                                return <Travel
-                                    key={travel.id}
-                                    id={travel.id}
-                                    exitDate={travel.exitDate}
-                                    enterDate={travel.enterDate}
-                                    portOfEntry={travel.portOfEntry}
-                                    removeTravel={this.removeTravel} />;
-                            });
+                this.state.travels
+                    .map(travel => {
+                        return <Travel
+                            key={travel.id}
+                            id={travel.id}
+                            exitDate={travel.exitDate}
+                            enterDate={travel.enterDate}
+                            portOfEntry={travel.portOfEntry}
+                            removeTravel={this.removeTravel}/>;
+                    });
         }
 
         return (
             <div className={classes.TravelHistory}>
                 <Modal
                     show={this.state.addingTravel}
-                    dismissModalHandler={this.dismissTravelModalHandler} >
+                    dismissModalHandler={this.dismissTravelModalHandler}>
                     <AddTravel
                         addTravelSubmitted={this.addTravelSubmittedHandler}
-                        dismissTravelModalClicked={this.dismissTravelModalHandler} />
+                        dismissTravelModalClicked={this.dismissTravelModalHandler}/>
                 </Modal>
                 {travelHistory}
                 <Button clicked={this.addTravelHandler}>Add Travel</Button>

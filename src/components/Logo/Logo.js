@@ -5,7 +5,7 @@ import appLogo from '../../assets/images/logo.png';
 
 const logo = (props) => (
     <div className={classes.Logo}>
-        <img src={appLogo} />
+        <img src={appLogo}/>
     </div>
 );
 
